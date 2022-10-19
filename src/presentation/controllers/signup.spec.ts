@@ -47,6 +47,10 @@ const makeSut = (): SutTypes => {
 }
 
 describe('SignUp Controller', () => {
+  beforeEach(() => {
+    jest.restoreAllMocks()
+  })
+
   test('should return 400 if no name is provided', async () => {
     const { sut } = makeSut()
     const httpRequest = {

@@ -13,8 +13,12 @@ const makeSut = (): SutTypes => {
 }
 
 describe('account mongo repository', () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     jest.restoreAllMocks()
+    await mongoHelper.getCollection('accounts').deleteMany({})
+  })
+
+  beforeAll(async () => {
     await mongoHelper.connect(process.env.MONGO_URL ?? '')
   })
 

@@ -2,6 +2,16 @@ import { AccountMongoRepository } from './account.repository'
 
 import { mongoHelper } from '../helpers/mongo.helper'
 
+interface SutTypes {
+  sut: AccountMongoRepository
+}
+
+const makeSut = (): SutTypes => {
+  return {
+    sut: new AccountMongoRepository()
+  }
+}
+
 describe('account mongo repository', () => {
   beforeAll(async () => {
     jest.restoreAllMocks()
@@ -13,7 +23,7 @@ describe('account mongo repository', () => {
   })
 
   test('should return an account on success', async () => {
-    const sut = new AccountMongoRepository()
+    const { sut } = makeSut()
 
     const account = await sut.add({
       name: 'valid name',

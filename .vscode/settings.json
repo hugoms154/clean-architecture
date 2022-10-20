@@ -3,6 +3,7 @@
   "exportall.config.folderListener": [
     "/src/presentation/errors",
     "/src/presentation/protocols",
-    "/src/presentation/helpers"
+    "/src/presentation/helpers",
+    "/src/main/middlewares"
   ]
 }

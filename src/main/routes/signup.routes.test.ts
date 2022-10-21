@@ -29,6 +29,5 @@ describe('signup routes', () => {
         passwordConfirmation: 'valid_password'
       })
       .expect(200)
-      .expect({ ok: 'ok' })
   })
 })

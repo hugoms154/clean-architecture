@@ -1,10 +1,24 @@
 import request from 'supertest'
+import { mongoHelper } from '../../infra/db/mongodb/helpers/mongo.helper'
 import { app } from '../config/app.express'
 import { routes } from './const'
 
 const { buildApiPath, account: { signup } } = routes
 
 describe('signup routes', () => {
+  beforeEach(async () => {
+    jest.restoreAllMocks()
+    await mongoHelper.getCollection('accounts').deleteMany({})
+  })
+
+  beforeAll(async () => {
+    await mongoHelper.connect(process.env.MONGO_URL ?? '')
+  })
+
+  afterAll(async () => {
+    await mongoHelper.disconnect()
+  })
+
   test('should return an account on success', async () => {
     await request(app)
       .post(buildApiPath(signup))
